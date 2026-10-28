@@ -1,4 +1,4 @@
-# Chương 5: Cây quyết định và ensemble
+# Chương 6: Cây quyết định và ensemble
 
 Với dữ liệu dạng bảng, nhóm mô hình này (đặc biệt gradient boosting) thường cho kết quả tốt nhất trong thực tế, và là thứ bạn sẽ dùng nhiều nhất.
 
@@ -396,11 +396,11 @@ Khi nào **không** dùng cây: dữ liệu có cấu trúc đặc biệt (ảnh
 - **Biến phân loại nhiều giá trị:** dùng hỗ trợ native của LightGBM/CatBoost thay vì one-hot (one-hot làm cây thưa và kém hiệu quả).
 - **Giá trị thiếu:** để nguyên cho LightGBM/XGBoost/CatBoost/HistGradientBoosting; chúng học được hướng đi tốt nhất cho giá trị thiếu.
 - **Số cây:** đặt lớn kèm early stopping, đừng đoán.
-- **Learning curve và validation curve** cho biết đang overfit hay underfit ([Chương 8](08-danh-gia-mo-hinh.md)).
+- **Learning curve và validation curve** cho biết đang overfit hay underfit ([Chương 3](03-danh-gia-mo-hinh.md)).
 - **Đặc trưng quan trọng cao bất thường** thường là dấu hiệu rò rỉ.
 - **Dữ liệu mất cân bằng:** `scale_pos_weight` (XGBoost/LightGBM) hoặc `class_weight`, và đánh giá bằng PR-AUC.
 - **Tái lập:** cố định `random_state`, ghi lại phiên bản thư viện (kết quả giữa các phiên bản có thể khác).
 
 ---
 
-**Trước:** [Chương 4](04-hoi-quy-va-phan-loai.md) | **Tiếp theo:** [Chương 6: SVM, KNN, Naive Bayes và các mô hình khác](06-svm-knn-naive-bayes.md)
+**Trước:** [Chương 5](05-hoi-quy-va-phan-loai.md) | **Tiếp theo:** [Chương 7: SVM, KNN, Naive Bayes và các mô hình khác](07-svm-knn-naive-bayes.md)

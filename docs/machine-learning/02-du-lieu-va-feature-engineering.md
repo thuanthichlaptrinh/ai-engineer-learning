@@ -1,6 +1,8 @@
-# Chương 3: Dữ liệu và feature engineering
+# Chương 2: Dữ liệu và feature engineering
 
 "Garbage in, garbage out." Phần lớn chất lượng của một hệ thống ML đến từ dữ liệu và đặc trưng, không phải thuật toán.
+
+> **Phạm vi:** chương này dùng cho **mọi kiểu học**. Các phần về nhãn, chia train/validation/test, rò rỉ nhãn và mất cân bằng lớp chỉ áp dụng khi có nhãn (học có giám sát). Học không giám sát vẫn cần xử lý giá trị thiếu, outlier, mã hóa và đặc biệt là chuẩn hóa (xem [chương 8](08-hoc-khong-giam-sat.md)).
 
 ## Mục lục
 
@@ -183,7 +185,7 @@ Outlier là điểm khác biệt rõ rệt với phần còn lại. Có hai lo�
 | **IQR** | Ngoài $[Q_1 - 1.5\,\mathrm{IQR},\; Q_3 + 1.5\,\mathrm{IQR}]$ |
 | **Z-score** | $\lvert z\rvert > 3$ (chỉ hợp lý khi phân phối gần chuẩn) |
 | **Trực quan** | Boxplot, scatter plot |
-| **Mô hình** | Isolation Forest, LOF (xem [Chương 7](07-hoc-khong-giam-sat.md)) |
+| **Mô hình** | Isolation Forest, LOF (xem [Chương 8](08-hoc-khong-giam-sat.md)) |
 
 ```python
 q1, q3 = df["price"].quantile([0.25, 0.75])
@@ -337,7 +339,7 @@ RFE(LogisticRegression(max_iter=1000), n_features_to_select=15)
 
 Quy tắc: chọn đặc trưng cũng là bước "học từ dữ liệu", nên phải nằm **trong pipeline và cross-validation**, nếu không sẽ rò rỉ.
 
-Hai đặc trưng tương quan rất cao (>0.95) mang thông tin gần như trùng nhau: có thể bỏ một. Với mô hình tuyến tính, đa cộng tuyến làm hệ số mất ổn định (kiểm tra bằng VIF, xem [Chương 4](04-hoi-quy-va-phan-loai.md)).
+Hai đặc trưng tương quan rất cao (>0.95) mang thông tin gần như trùng nhau: có thể bỏ một. Với mô hình tuyến tính, đa cộng tuyến làm hệ số mất ổn định (kiểm tra bằng VIF, xem [Chương 5](05-hoi-quy-va-phan-loai.md)).
 
 ---
 
@@ -414,7 +416,7 @@ prec, rec, thr = precision_recall_curve(y_val, proba_val)
 
 **Cảnh báo:** chỉ lấy mẫu lại trên **tập train của từng fold**. Tập validation/test giữ nguyên phân phối thật, vì đó mới là điều bạn sẽ gặp khi triển khai.
 
-Lưu ý: oversample hay đổi trọng số làm **xác suất đầu ra bị lệch** (không còn là xác suất thật). Nếu cần xác suất đáng tin, hiệu chỉnh lại (calibration, xem [Chương 4](04-hoi-quy-va-phan-loai.md)).
+Lưu ý: oversample hay đổi trọng số làm **xác suất đầu ra bị lệch** (không còn là xác suất thật). Nếu cần xác suất đáng tin, hiệu chỉnh lại (calibration, xem [Chương 5](05-hoi-quy-va-phan-loai.md)).
 
 ---
 
@@ -451,7 +453,7 @@ Không có con số cố định, nhưng có hướng dẫn thực tế:
 - Mạng neural từ đầu: hàng chục nghìn đến hàng triệu (hoặc dùng transfer learning).
 - Quy tắc kinh nghiệm cũ: ít nhất 10 mẫu cho mỗi đặc trưng cho mô hình tuyến tính, và 10–20 mẫu của lớp hiếm cho mỗi đặc trưng trong phân loại.
 
-**Cách kiểm chứng bằng thực nghiệm:** vẽ **learning curve** (điểm theo kích thước tập train). Nếu điểm validation còn đang tăng khi thêm dữ liệu thì thêm dữ liệu sẽ giúp; nếu đã phẳng thì thêm dữ liệu không giúp, cần đặc trưng hoặc mô hình tốt hơn (xem [Chương 8](08-danh-gia-mo-hinh.md)).
+**Cách kiểm chứng bằng thực nghiệm:** vẽ **learning curve** (điểm theo kích thước tập train). Nếu điểm validation còn đang tăng khi thêm dữ liệu thì thêm dữ liệu sẽ giúp; nếu đã phẳng thì thêm dữ liệu không giúp, cần đặc trưng hoặc mô hình tốt hơn (xem [Chương 3](03-danh-gia-mo-hinh.md)).
 
 ---
 
@@ -473,4 +475,4 @@ Trước khi dựng mô hình, đánh dấu:
 
 ---
 
-**Trước:** [Chương 2](02-toan-nen-tang-va-toi-uu.md) | **Tiếp theo:** [Chương 4: Hồi quy và phân loại](04-hoi-quy-va-phan-loai.md)
+**Trước:** [Chương 1](01-tong-quan-va-cac-kieu-hoc.md) | **Tiếp theo:** [Chương 3: Đánh giá mô hình](03-danh-gia-mo-hinh.md)

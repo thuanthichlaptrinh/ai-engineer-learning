@@ -1,4 +1,4 @@
-# Chương 6: SVM, KNN, Naive Bayes và các mô hình khác
+# Chương 7: SVM, KNN, Naive Bayes và các mô hình khác
 
 Ba họ mô hình với ba cách tiếp cận rất khác nhau: **hình học** (SVM), **dựa trên mẫu** (KNN), **xác suất** (Naive Bayes, LDA). Chúng ít dùng hơn boosting cho dữ liệu bảng lớn, nhưng quan trọng để hiểu các ý tưởng nền và vẫn hiệu quả ở những bài toán nhỏ hoặc đặc thù.
 
@@ -268,7 +268,7 @@ Quy tắc kinh nghiệm: cho tác vụ **dự đoán thuần túy** với đủ 
 
 ## 7. Khi nào chọn mô hình nào
 
-**Quy trình mặc định cho dữ liệu bảng:** baseline → Logistic/Ridge → Random Forest → LightGBM (xem [Chương 5](05-cay-va-ensemble.md)).
+**Quy trình mặc định cho dữ liệu bảng:** baseline → Logistic/Ridge → Random Forest → LightGBM (xem [Chương 6](06-cay-va-ensemble.md)).
 
 **Các tình huống đặc thù:**
 
@@ -286,4 +286,4 @@ Nhắc lại **No Free Lunch**: không mô hình nào luôn thắng. Quyết đ�
 
 ---
 
-**Trước:** [Chương 5](05-cay-va-ensemble.md) | **Tiếp theo:** [Chương 7: Học không giám sát](07-hoc-khong-giam-sat.md)
+**Trước:** [Chương 6](06-cay-va-ensemble.md) | **Tiếp theo:** [Chương 8: Học không giám sát](08-hoc-khong-giam-sat.md)

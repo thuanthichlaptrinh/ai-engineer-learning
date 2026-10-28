@@ -70,7 +70,7 @@ Toán:
 - [ ] Thiết kế thí nghiệm: baseline, ablation, so sánh có ý nghĩa thống kê
 - [ ] Giải thích mô hình (SHAP, feature importance), công bằng và thiên lệch (bias) của dữ liệu
 
-**Tài liệu chi tiết:** [machine-learning.md](machine-learning.md)
+**Tài liệu chi tiết:** [machine-learning/README.md](machine-learning/README.md)
 
 **Tài liệu gợi ý:** Machine Learning Specialization của Andrew Ng, "Hands-On Machine Learning" của Aurélien Géron.
 

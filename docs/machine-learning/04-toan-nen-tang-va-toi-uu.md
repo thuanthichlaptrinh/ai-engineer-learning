@@ -1,6 +1,8 @@
-# Chương 2: Toán nền tảng và tối ưu hóa
+# Chương 4: Toán nền tảng và tối ưu hóa
 
 Chương này nối toán ở GĐ0 với ML. Không cần chứng minh chặt chẽ, nhưng phải hiểu **vì sao** các công thức loss và regularization có dạng như vậy.
+
+> **Phạm vi:** loss, MLE và gradient descent ở đây phục vụ **học có giám sát** (chương 5 đến 7). K-Means, PCA cũng tối ưu một hàm mục tiêu nhưng bằng thuật toán riêng, xem [chương 8](08-hoc-khong-giam-sat.md). Phần xác suất và lý thuyết thông tin dùng chung cho mọi kiểu học.
 
 ## Mục lục
 
@@ -269,7 +271,7 @@ Bootstrap cũng là nền của Random Forest (bagging).
 
 ### 7.5. Kiểm định giả thuyết
 
-Dùng để hỏi "chênh lệch này có thật không hay do may rủi?". Giá trị $p$ nhỏ nghĩa là kết quả khó xảy ra nếu giả thuyết không (không có khác biệt) đúng. Lưu ý khi so sánh mô hình bằng cross-validation: các fold chia sẻ dữ liệu nên không độc lập, kiểm định t thông thường sẽ **đánh giá thấp độ bất định** (xem [Chương 8](08-danh-gia-mo-hinh.md)).
+Dùng để hỏi "chênh lệch này có thật không hay do may rủi?". Giá trị $p$ nhỏ nghĩa là kết quả khó xảy ra nếu giả thuyết không (không có khác biệt) đúng. Lưu ý khi so sánh mô hình bằng cross-validation: các fold chia sẻ dữ liệu nên không độc lập, kiểm định t thông thường sẽ **đánh giá thấp độ bất định** (xem [Chương 3](03-danh-gia-mo-hinh.md)).
 
 ---
 
@@ -300,4 +302,4 @@ Cách đối phó: chọn đặc trưng, giảm chiều (PCA), regularization, m
 
 ---
 
-**Trước:** [Chương 1](01-tong-quan-va-cac-kieu-hoc.md) | **Tiếp theo:** [Chương 3: Dữ liệu và feature engineering](03-du-lieu-va-feature-engineering.md)
+**Trước:** [Chương 3](03-danh-gia-mo-hinh.md) | **Tiếp theo:** [Chương 5: Hồi quy và phân loại (mô hình tuyến tính)](05-hoi-quy-va-phan-loai.md)

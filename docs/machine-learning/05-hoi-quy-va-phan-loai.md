@@ -1,4 +1,4 @@
-# Chương 4: Hồi quy và phân loại (mô hình tuyến tính)
+# Chương 5: Hồi quy và phân loại (mô hình tuyến tính)
 
 Mô hình tuyến tính là nền tảng của ML: đơn giản, nhanh, dễ diễn giải, và là baseline tốt nhất. Hiểu kỹ chúng, bạn sẽ hiểu luôn nền của mạng neural.
 
@@ -37,7 +37,7 @@ Dạng ma trận: thêm cột toàn 1 vào $X$ để gộp $b$ vào $\mathbf{w}$
 
 $$J(\mathbf w,b)=\frac1n\sum_{i=1}^n(\hat y_i-y_i)^2$$
 
-Đây là MLE khi nhiễu có phân phối chuẩn (xem [Chương 2](02-toan-nen-tang-va-toi-uu.md)).
+Đây là MLE khi nhiễu có phân phối chuẩn (xem [Chương 4](04-toan-nen-tang-va-toi-uu.md)).
 
 ### 1.3. Hai cách giải
 
@@ -196,7 +196,7 @@ model = TransformedTargetRegressor(
 )
 ```
 
-Khi quan hệ phức tạp và có nhiều tương tác, chuyển sang cây và boosting ([Chương 5](05-cay-va-ensemble.md)) thường đỡ công hơn.
+Khi quan hệ phức tạp và có nhiều tương tác, chuyển sang cây và boosting ([Chương 6](06-cay-va-ensemble.md)) thường đỡ công hơn.
 
 ---
 
@@ -467,4 +467,4 @@ Hiệu chỉnh phải fit trên dữ liệu **không dùng để huấn luyện 
 
 ---
 
-**Trước:** [Chương 3](03-du-lieu-va-feature-engineering.md) | **Tiếp theo:** [Chương 5: Cây quyết định và ensemble](05-cay-va-ensemble.md)
+**Trước:** [Chương 4](04-toan-nen-tang-va-toi-uu.md) | **Tiếp theo:** [Chương 6: Cây quyết định và ensemble](06-cay-va-ensemble.md)

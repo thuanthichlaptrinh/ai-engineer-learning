@@ -4,16 +4,16 @@ Chương này vẽ bản đồ toàn cảnh. Đọc kỹ trước khi vào chi t
 
 ## Mục lục
 
-1. [AI, Machine Learning, Deep Learning](#1-ai-machine-learning-deep-learning)
-2. [Định nghĩa Machine Learning](#2-định-nghĩa-machine-learning)
-3. [Khi nào nên và không nên dùng ML](#3-khi-nào-nên-và-không-nên-dùng-ml)
-4. [Phân loại theo tín hiệu học: các kiểu học](#4-phân-loại-theo-tín-hiệu-học-các-kiểu-học)
-5. [Học có giám sát](#5-học-có-giám-sát-supervised-learning)
-6. [Học không giám sát](#6-học-không-giám-sát-unsupervised-learning)
-7. [Học bán giám sát](#7-học-bán-giám-sát-semi-supervised-learning)
-8. [Học tự giám sát](#8-học-tự-giám-sát-self-supervised-learning)
-9. [Học tăng cường](#9-học-tăng-cường-reinforcement-learning)
-10. [Các kiểu học khác](#10-các-kiểu-học-khác)
+1. [Machine Learning là gì](#1-machine-learning-là-gì)
+2. [Các kiểu học: phân loại theo tín hiệu học](#2-các-kiểu-học-phân-loại-theo-tín-hiệu-học)
+3. [Học có giám sát (Supervised Learning)](#3-học-có-giám-sát-supervised-learning)
+4. [Học không giám sát (Unsupervised Learning)](#4-học-không-giám-sát-unsupervised-learning)
+5. [Học bán giám sát (Semi-supervised Learning)](#5-học-bán-giám-sát-semi-supervised-learning)
+6. [Học tự giám sát (Self-supervised Learning)](#6-học-tự-giám-sát-self-supervised-learning)
+7. [Học tăng cường (Reinforcement Learning)](#7-học-tăng-cường-reinforcement-learning)
+8. [Các kiểu học khác](#8-các-kiểu-học-khác)
+9. [AI, Machine Learning, Deep Learning](#9-ai-machine-learning-deep-learning)
+10. [Khi nào nên và không nên dùng ML](#10-khi-nào-nên-và-không-nên-dùng-ml)
 11. [Phân loại theo các trục khác](#11-phân-loại-theo-các-trục-khác)
 12. [Các thành phần của một hệ thống ML](#12-các-thành-phần-của-một-hệ-thống-ml)
 13. [Các loại dữ liệu](#13-các-loại-dữ-liệu)
@@ -23,34 +23,7 @@ Chương này vẽ bản đồ toàn cảnh. Đọc kỹ trước khi vào chi t
 
 ---
 
-## 1. AI, Machine Learning, Deep Learning
-
-```
-Trí tuệ nhân tạo (AI)
-└── Machine Learning (ML): học quy luật từ dữ liệu
-    └── Deep Learning (DL): ML dùng mạng neural nhiều tầng
-        └── Mô hình ngôn ngữ lớn (LLM), mô hình sinh ảnh...
-```
-
-| Khái niệm | Là gì | Ví dụ |
-|---|---|---|
-| **AI** | Mọi kỹ thuật làm máy hành xử "thông minh", gồm cả luật viết tay và tìm kiếm | Hệ chuyên gia, thuật toán cờ vua cổ điển |
-| **ML** | Máy tự học quy luật từ dữ liệu thay vì được lập trình từng luật | Lọc spam, dự đoán giá, gợi ý sản phẩm |
-| **DL** | ML dựa trên mạng neural sâu, tự học đặc trưng từ dữ liệu thô | Nhận diện ảnh, dịch máy, ChatGPT |
-| **Data Science** | Rút thông tin từ dữ liệu: thống kê, trực quan hóa, ML, truyền đạt kết quả | Báo cáo phân tích, thí nghiệm A/B |
-
-Mối quan hệ: ML là tập con của AI. DL là tập con của ML. Data Science giao với cả ML lẫn thống kê, không nằm gọn trong chúng.
-
-**Khác biệt về cách tiếp cận:**
-
-```
-Lập trình truyền thống:   Dữ liệu + Luật   →  Chương trình  →  Đáp án
-Machine Learning:         Dữ liệu + Đáp án →  Học           →  Luật (mô hình)
-```
-
----
-
-## 2. Định nghĩa Machine Learning
+## 1. Machine Learning là gì
 
 Định nghĩa kinh điển của Tom Mitchell (1997):
 
@@ -65,25 +38,7 @@ Cách phát biểu toán học thường dùng: có dữ liệu $\{(x_i, y_i)\}_
 
 ---
 
-## 3. Khi nào nên và không nên dùng ML
-
-**Nên dùng khi:**
-- Không thể viết luật bằng tay, hoặc luật quá nhiều, quá phức tạp (nhận diện giọng nói, ảnh).
-- Luật thay đổi theo thời gian, cần hệ thống tự thích nghi (gian lận, thị hiếu).
-- Có đủ dữ liệu và dữ liệu đại diện cho tình huống thật.
-- Chấp nhận được sai số (dự đoán không bao giờ đúng 100%).
-
-**Không nên dùng khi:**
-- Có luật rõ ràng và đơn giản. Một câu `if` rẻ và đáng tin hơn.
-- Không có dữ liệu, hoặc dữ liệu quá ít hay quá nhiễu.
-- Cần đảm bảo tuyệt đối và giải thích được từng quyết định theo luật cứng (một số bài toán pháp lý, an toàn).
-- Chi phí xây dựng và vận hành vượt giá trị mang lại.
-
-**Quy tắc thực tế:** thử giải pháp không dùng ML trước (luật đơn giản, trung bình, truy vấn SQL). Đó vừa là baseline, vừa cho biết ML có thực sự cần thiết.
-
----
-
-## 4. Phân loại theo tín hiệu học: các kiểu học
+## 2. Các kiểu học: phân loại theo tín hiệu học
 
 Cách phân loại phổ biến nhất dựa vào **loại thông tin mô hình nhận được để học**.
 
@@ -108,13 +63,24 @@ Bạn có nhãn cho dữ liệu không?
     phần thưởng sau hành động  → Học tăng cường
 ```
 
+### Bản đồ: kiểu học nào được dạy ở chương nào
+
+| Kiểu học | Học ở đâu trong bộ tài liệu |
+|---|---|
+| **Có giám sát** (hồi quy, phân loại) | Chương 3 (đánh giá), 4 (toán và tối ưu), 5 (mô hình tuyến tính), 6 (cây và ensemble), 7 (SVM, KNN, Naive Bayes) |
+| **Không giám sát** | Chương 8 |
+| **Bán giám sát, tự giám sát, tăng cường**, chuyển giao, chủ động, trực tuyến, nhãn yếu | Giới thiệu ở chương này; chi tiết và code ở chương 10 |
+| **Dùng chung cho mọi kiểu học** | Chương 2 (dữ liệu và đặc trưng), chương 9 (pipeline, triển khai) |
+
+Chương 2 áp dụng cho mọi kiểu học. Các chương 3 đến 7 viết cho **học có giám sát** (có nhãn $y$), vì đó là kiểu học phổ biến nhất và là nền để hiểu các kiểu còn lại. Phần tương ứng cho học không giám sát nằm ở chương 8, gồm cả cách đánh giá riêng của nó.
+
 ---
 
-## 5. Học có giám sát (Supervised Learning)
+## 3. Học có giám sát (Supervised Learning)
 
 Mô hình học từ dữ liệu đã gán nhãn, như học sinh làm bài có đáp án. Mục tiêu: học ánh xạ $f: X \to Y$.
 
-### 5.1. Các dạng bài toán
+### 3.1. Các dạng bài toán
 
 | Dạng | Đầu ra $y$ | Ví dụ | Thuật toán thường dùng |
 |---|---|---|---|
@@ -129,14 +95,14 @@ Mô hình học từ dữ liệu đã gán nhãn, như học sinh làm bài có 
 
 **Phân biệt hồi quy và phân loại:** nhìn vào nhãn. Nếu nhãn là số mà "gần hơn thì tốt hơn" (dự đoán 305 thay vì 300 tốt hơn dự đoán 400) thì hồi quy. Nếu nhãn là danh mục thì phân loại. Một số bài toán chuyển đổi qua lại được (chia giá thành các khoảng), nhưng thường mất thông tin.
 
-### 5.2. Cách học
+### 3.2. Cách học
 
 1. Chọn họ mô hình và hàm mất mát.
 2. Đưa dữ liệu có nhãn, mô hình dự đoán, so với nhãn thật, tính loss.
 3. Điều chỉnh tham số để giảm loss (tối ưu hóa).
 4. Đánh giá trên dữ liệu chưa từng thấy.
 
-### 5.3. Ưu và nhược
+### 3.3. Ưu và nhược
 
 | Ưu | Nhược |
 |---|---|
@@ -144,17 +110,17 @@ Mô hình học từ dữ liệu đã gán nhãn, như học sinh làm bài có 
 | Hiệu quả cao khi đủ nhãn tốt | Nhãn sai hoặc thiên lệch thì mô hình sai theo |
 | Phần lớn ứng dụng thương mại thuộc nhóm này | Chỉ học được những gì nhãn thể hiện |
 
-### 5.4. Chi phí gán nhãn
+### 3.4. Chi phí gán nhãn
 
-Nhãn là nút thắt lớn nhất. Các nguồn nhãn: gán tay (đắt, chất lượng cao), crowdsourcing (rẻ, nhiễu hơn), nhãn tự nhiên từ hệ thống (click, mua hàng, hủy dịch vụ), nhãn yếu từ luật (xem mục 10). Luôn kiểm tra chất lượng nhãn: nhờ hai người gán độc lập và đo mức đồng thuận (Cohen's kappa).
+Nhãn là nút thắt lớn nhất. Các nguồn nhãn: gán tay (đắt, chất lượng cao), crowdsourcing (rẻ, nhiễu hơn), nhãn tự nhiên từ hệ thống (click, mua hàng, hủy dịch vụ), nhãn yếu từ luật (xem mục 8). Luôn kiểm tra chất lượng nhãn: nhờ hai người gán độc lập và đo mức đồng thuận (Cohen's kappa).
 
 ---
 
-## 6. Học không giám sát (Unsupervised Learning)
+## 4. Học không giám sát (Unsupervised Learning)
 
 Chỉ có đầu vào $x$, không có nhãn $y$. Mô hình tự tìm cấu trúc ẩn trong dữ liệu. Không có "đáp án đúng" để so sánh, nên việc đánh giá khó hơn và thường cần đánh giá bằng mục đích sử dụng.
 
-### 6.1. Các dạng bài toán
+### 4.1. Các dạng bài toán
 
 | Dạng | Mục tiêu | Ví dụ | Thuật toán |
 |---|---|---|---|
@@ -166,14 +132,14 @@ Chỉ có đầu vào $x$, không có nhãn $y$. Mô hình tự tìm cấu trúc
 | **Học biểu diễn** (representation learning) | Học vector đặc trưng hữu ích | Embedding từ, embedding ảnh | Autoencoder, Word2Vec |
 | **Mô hình sinh** (generative) | Học để sinh dữ liệu giống thật | Sinh ảnh, sinh văn bản | VAE, GAN, diffusion |
 
-### 6.2. Dùng để làm gì trong thực tế
+### 4.2. Dùng để làm gì trong thực tế
 
 - **Khám phá:** hiểu dữ liệu trước khi dựng mô hình có giám sát.
 - **Tiền xử lý:** giảm chiều, khử nhiễu, tạo đặc trưng (số cụm, khoảng cách tới tâm cụm).
 - **Sản phẩm độc lập:** phân khúc khách hàng, phát hiện bất thường, gợi ý.
 - **Khi không có nhãn** và chưa thể có nhãn.
 
-### 6.3. Ưu và nhược
+### 4.3. Ưu và nhược
 
 | Ưu | Nhược |
 |---|---|
@@ -181,9 +147,9 @@ Chỉ có đầu vào $x$, không có nhãn $y$. Mô hình tự tìm cấu trúc
 | Tìm được cấu trúc bạn chưa nghĩ tới | Kết quả phụ thuộc mạnh vào lựa chọn thuật toán và siêu tham số |
 | Dữ liệu không nhãn thì rất nhiều | Khó diễn giải: "cụm 3" nghĩa là gì? Cần con người đặt tên |
 
-Chi tiết thuật toán ở [Chương 7](07-hoc-khong-giam-sat.md).
+Chi tiết thuật toán ở [Chương 8](08-hoc-khong-giam-sat.md).
 
-### 6.4. So sánh có giám sát và không giám sát
+### 4.4. So sánh có giám sát và không giám sát
 
 | | Có giám sát | Không giám sát |
 |---|---|---|
@@ -195,7 +161,7 @@ Chi tiết thuật toán ở [Chương 7](07-hoc-khong-giam-sat.md).
 
 ---
 
-## 7. Học bán giám sát (Semi-supervised Learning)
+## 5. Học bán giám sát (Semi-supervised Learning)
 
 Có **ít nhãn, nhiều dữ liệu không nhãn**. Ý tưởng: dữ liệu không nhãn cho biết hình dạng của phân phối, giúp mô hình đặt ranh giới quyết định tốt hơn so với chỉ dùng vài mẫu có nhãn.
 
@@ -214,7 +180,7 @@ Code và ví dụ ở [Chương 10](10-cac-kieu-hoc-khac.md).
 
 ---
 
-## 8. Học tự giám sát (Self-supervised Learning)
+## 6. Học tự giám sát (Self-supervised Learning)
 
 Nhãn được **tạo tự động từ chính dữ liệu**, nên không cần người gán. Mô hình giải một "bài toán giả" (pretext task) để buộc nó học biểu diễn hữu ích, sau đó biểu diễn này dùng cho bài toán thật.
 
@@ -229,7 +195,7 @@ Nhãn được **tạo tự động từ chính dữ liệu**, nên không cần
 
 ---
 
-## 9. Học tăng cường (Reinforcement Learning)
+## 7. Học tăng cường (Reinforcement Learning)
 
 Một **tác tử** (agent) tương tác với **môi trường** (environment) qua nhiều bước. Ở mỗi bước nó quan sát trạng thái, chọn hành động, nhận phần thưởng và chuyển sang trạng thái mới. Mục tiêu: học **chính sách** (policy) tối đa hóa **tổng phần thưởng tích lũy**.
 
@@ -263,7 +229,7 @@ Phần cơ bản (bandit, Q-learning) có ở [Chương 10](10-cac-kieu-hoc-khac
 
 ---
 
-## 10. Các kiểu học khác
+## 8. Các kiểu học khác
 
 | Kiểu | Ý tưởng | Ví dụ |
 |---|---|---|
@@ -278,6 +244,51 @@ Phần cơ bản (bandit, Q-learning) có ở [Chương 10](10-cac-kieu-hoc-khac
 | **Meta-learning** | "Học cách học", thích nghi nhanh với tác vụ mới | MAML |
 
 Bạn không cần thành thạo hết. Điều cần là biết **tên và ý tưởng** để nhận ra khi một bài toán thật rơi vào nhóm nào.
+
+---
+
+## 9. AI, Machine Learning, Deep Learning
+
+```
+Trí tuệ nhân tạo (AI)
+└── Machine Learning (ML): học quy luật từ dữ liệu
+    └── Deep Learning (DL): ML dùng mạng neural nhiều tầng
+        └── Mô hình ngôn ngữ lớn (LLM), mô hình sinh ảnh...
+```
+
+| Khái niệm | Là gì | Ví dụ |
+|---|---|---|
+| **AI** | Mọi kỹ thuật làm máy hành xử "thông minh", gồm cả luật viết tay và tìm kiếm | Hệ chuyên gia, thuật toán cờ vua cổ điển |
+| **ML** | Máy tự học quy luật từ dữ liệu thay vì được lập trình từng luật | Lọc spam, dự đoán giá, gợi ý sản phẩm |
+| **DL** | ML dựa trên mạng neural sâu, tự học đặc trưng từ dữ liệu thô | Nhận diện ảnh, dịch máy, ChatGPT |
+| **Data Science** | Rút thông tin từ dữ liệu: thống kê, trực quan hóa, ML, truyền đạt kết quả | Báo cáo phân tích, thí nghiệm A/B |
+
+Mối quan hệ: ML là tập con của AI. DL là tập con của ML. Data Science giao với cả ML lẫn thống kê, không nằm gọn trong chúng.
+
+**Khác biệt về cách tiếp cận:**
+
+```
+Lập trình truyền thống:   Dữ liệu + Luật   →  Chương trình  →  Đáp án
+Machine Learning:         Dữ liệu + Đáp án →  Học           →  Luật (mô hình)
+```
+
+---
+
+## 10. Khi nào nên và không nên dùng ML
+
+**Nên dùng khi:**
+- Không thể viết luật bằng tay, hoặc luật quá nhiều, quá phức tạp (nhận diện giọng nói, ảnh).
+- Luật thay đổi theo thời gian, cần hệ thống tự thích nghi (gian lận, thị hiếu).
+- Có đủ dữ liệu và dữ liệu đại diện cho tình huống thật.
+- Chấp nhận được sai số (dự đoán không bao giờ đúng 100%).
+
+**Không nên dùng khi:**
+- Có luật rõ ràng và đơn giản. Một câu `if` rẻ và đáng tin hơn.
+- Không có dữ liệu, hoặc dữ liệu quá ít hay quá nhiễu.
+- Cần đảm bảo tuyệt đối và giải thích được từng quyết định theo luật cứng (một số bài toán pháp lý, an toàn).
+- Chi phí xây dựng và vận hành vượt giá trị mang lại.
+
+**Quy tắc thực tế:** thử giải pháp không dùng ML trước (luật đơn giản, trung bình, truy vấn SQL). Đó vừa là baseline, vừa cho biết ML có thực sự cần thiết.
 
 ---
 
@@ -339,7 +350,7 @@ Ta muốn tối thiểu hóa **rủi ro thật** (lỗi kỳ vọng trên phân 
 
 $$\hat{R}(f) = \frac{1}{n}\sum_{i=1}^{n} L\big(f(x_i), y_i\big)$$
 
-Khoảng cách giữa lỗi train và lỗi thật chính là vấn đề **tổng quát hóa** và gốc của overfitting (xem [Chương 8](08-danh-gia-mo-hinh.md)).
+Khoảng cách giữa lỗi train và lỗi thật chính là vấn đề **tổng quát hóa** và gốc của overfitting (xem [Chương 3](03-danh-gia-mo-hinh.md)).
 
 ### Thiên kiến quy nạp và định lý "No Free Lunch"
 
@@ -436,4 +447,4 @@ Thời gian thực tế của một dự án: khoảng 60–80% dành cho dữ l
 
 ---
 
-**Tiếp theo:** [Chương 2: Toán nền tảng và tối ưu hóa](02-toan-nen-tang-va-toi-uu.md)
+**Tiếp theo:** [Chương 2: Dữ liệu và feature engineering](02-du-lieu-va-feature-engineering.md)
