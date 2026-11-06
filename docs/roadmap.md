@@ -1,291 +1,389 @@
-# Roadmap học AI Engineer
+# Roadmap AI Engineer
 
-Lộ trình đi từ nền tảng đến Machine Learning, Deep Learning, LLM, RAG, Agents, Fine-tuning, MLOps và Big Data.
-Mỗi giai đoạn tương ứng một thư mục trong repo (đánh số **theo đúng thứ tự học**) và kết thúc bằng một sản phẩm cụ thể.
+Lộ trình này bám theo [AI Engineer Roadmap của roadmap.sh](https://roadmap.sh/ai-engineer): cùng thứ tự, cùng các mục, tên mục giữ nguyên tiếng Anh để dễ tra cứu. Phần tiếng Việt chỉ là giải thích ngắn. Đối chiếu với phiên bản roadmap.sh cập nhật ngày 16/10/2026.
 
-**Mục tiêu mặc định:** AI/LLM Engineer ứng dụng (xây hệ thống dùng LLM chạy thật), có nền ML/DL vững để hiểu cái mình đang dùng. Nếu mục tiêu khác, xem phần [Chọn nhánh theo mục tiêu](#chọn-nhánh-theo-mục-tiêu).
+**AI Engineer làm gì:** dùng model đã huấn luyện sẵn và các công cụ AI có sẵn để xây sản phẩm. Khác với ML Engineer hay AI Researcher, AI Engineer thường không tạo model mới từ đầu.
 
-**Giả định thời gian:** 10–15 giờ mỗi tuần. Tổng khoảng **10–13 tháng**. Học xen kẽ không làm giảm số giờ cần học, chỉ đổi thứ tự, nên các mốc dưới đây đã cộng đủ.
-
-Ký hiệu: **[Cốt lõi]** bắt buộc, **[Tùy chọn]** học khi có thời gian hoặc khi mục tiêu cần.
+**Cách đọc:** học từ trên xuống. Mỗi phần có các chủ đề chính (tiêu đề `###`) và các mục con để tick khi xong.
 
 ## Tổng quan
 
-| GĐ | Giai đoạn | Thư mục | Thời gian | Sản phẩm đầu ra |
-|---|---|---|---|---|
-| 0 | Nền tảng: Python, kỹ năng phần mềm, Toán, SQL | `00-foundations/` | 5–6 tuần | Phân tích dataset thật bằng Pandas, repo có test |
-| 1 | Machine Learning | `01-machine-learning/` | 6–8 tuần | Dự đoán giá nhà |
-| 2 | Deep Learning | `02-deep-learning/` | 6–8 tuần | Bộ phân loại ảnh |
-| 3 | NLP và LLM | `03-nlp-llm/` | 5–7 tuần | GPT mini tự viết, chạy model mã nguồn mở |
-| 4 | RAG và đánh giá | `04-rag/` | 5–6 tuần | Hệ thống hỏi đáp tài liệu có bộ đánh giá |
-| 5 | Agents | `05-agents/` | 4–5 tuần | Agent dùng tool và MCP server |
-| 6 | Fine-tuning | `06-fine-tuning/` | 3–4 tuần | LLM nhỏ tinh chỉnh cho một miền hẹp |
-| 7 | MLOps và LLMOps | `07-mlops-deployment/` | 5–6 tuần | Dịch vụ LLM đóng gói, có CI và monitoring |
-| 8 | Big Data **[Tùy chọn một phần]** | `08-big-data/` | 3–4 tuần | Pipeline dữ liệu chạy theo lịch |
-| – | Mở rộng **[Tùy chọn]** | `09-optional/` | tùy chọn | CV nâng cao, diffusion, RL, time series, recsys, speech |
+| Phần | Nhóm | Chủ đề chính |
+|---|---|---|
+| 0 | Điều kiện tiên quyết | Frontend, Backend hoặc Full-Stack (chọn một) |
+| 1 | Introduction | AI Engineer là gì, vai trò, so sánh với ML Engineer |
+| 2 | Working With LLMs | How LLMs Work → Prompt Engineering → Context Engineering |
+| 3 | AI Models | Type of Models → Choosing the Right Model |
+| 4 | Embeddings & Vector Databases | What are Embeddings → Embedding Models → Vector Databases |
+| 5 | RAGs | What are RAGs? |
+| 6 | AI Agents | AI Agents → Model Context Protocol (MCP) |
+| 7 | AI Safety and Ethics | AI Safety and Ethics |
+| 8 | Evaluation & Observability | LLM Observability → LLM Evaluations → Regression Testing |
+| 9 | Other AI Applications | Multimodal AI → Development Tools |
+
+## Phần 0: Điều kiện tiên quyết
+
+Biết một trong các hướng sau, vì AI Engineer trước hết vẫn là người xây phần mềm:
+
+- [ ] [Frontend](https://roadmap.sh/frontend)
+- [ ] [Backend](https://roadmap.sh/backend)
+- [ ] [Full-Stack](https://roadmap.sh/full-stack)
 
-Cộng lại: 42–54 tuần. Bỏ phần Kafka/Spark của GĐ8 thì bớt được khoảng 2 tuần.
+## Phần 1: Introduction
+
+- [ ] What is an AI Engineer? (AI Engineer là gì)
+- [ ] Roles and Responsibilities (vai trò và trách nhiệm)
+- [ ] Impact on Product Development (tác động lên quá trình phát triển sản phẩm)
+- [ ] AI Engineer vs ML Engineer (khác nhau ở đâu)
 
-**Học nhẹ xen kẽ từ sớm** (không tính thành giai đoạn riêng):
-- Git, `pytest`, GitHub: từ tuần đầu tiên.
-- Docker và FastAPI mức cơ bản: từ khoảng tháng 5, bọc thử một model đã train thành API.
-- SQL và DuckDB: trong GĐ1, khi bạn cần xử lý dữ liệu lớn hơn bộ nhớ.
+## Phần 2: Working With LLMs
 
-## GĐ0: Nền tảng (5–6 tuần) [Cốt lõi]
+### How LLMs Work
 
-**Mục tiêu:** viết Python sạch, hiểu toán vừa đủ, quen công cụ của người làm phần mềm.
+**Core LLM Elements** (thành phần cốt lõi):
 
-Python và kỹ năng phần mềm:
-- [ ] Python: kiểu dữ liệu, OOP, decorator, generator, typing, xử lý file, `async`
-- [ ] NumPy, Pandas, Matplotlib
-- [ ] Git, GitHub, dòng lệnh Linux, `uv` (WSL2 nếu cần trên Windows)
-- [ ] Viết test với `pytest`, cấu trúc package, logging, xử lý lỗi
-- [ ] SQL cơ bản (JOIN, GROUP BY, window function)
+- [ ] Tokens (đơn vị văn bản mà model xử lý)
+- [ ] Context (thông tin model nhìn thấy khi trả lời)
+- [ ] Sampling Parameters (tham số điều khiển cách chọn token tiếp theo)
+  - [ ] Temperature (độ ngẫu nhiên)
+  - [ ] Top-K (chỉ chọn trong K token xác suất cao nhất)
+  - [ ] Top-P (chỉ chọn trong nhóm token có tổng xác suất đạt P)
+  - [ ] Repetition Penalties (giảm lặp từ)
 
-Toán:
-- [ ] Đại số tuyến tính: vector, ma trận, nhân ma trận, eigenvalue
-- [ ] Giải tích: đạo hàm, gradient, chain rule
-- [ ] Xác suất và thống kê: phân phối, kỳ vọng, phương sai, Bayes, kiểm định giả thuyết
-- [ ] Lý thuyết thông tin: entropy, cross-entropy, KL divergence (nền của loss và đánh giá LLM)
-- [ ] Tối ưu hóa: hàm lồi và không lồi, gradient descent, momentum
+**Common Terminology** (thuật ngữ phổ biến):
 
-**Tài liệu gợi ý:** 3Blue1Brown (Essence of Linear Algebra, Calculus), Khan Academy, "Python for Data Analysis" của Wes McKinney.
+- [ ] AI vs AGI
+- [ ] Large Language Model (LLM)
+- [ ] Embeddings
+- [ ] Training (huấn luyện)
+- [ ] Inference (suy luận, tức chạy model để lấy kết quả)
+- [ ] Vector DBs
+- [ ] AI Agents
+- [ ] RAGs
+- [ ] Context Window (giới hạn lượng token trong một lần gọi)
+- [ ] Fine-tuning (tinh chỉnh model cho tác vụ riêng)
+- [ ] Prompt Engineering
+- [ ] Inference Engineering (phục vụ model nhanh hơn, rẻ hơn, ổn định hơn)
+- [ ] Context Engineering
 
-**Hoàn thành khi:** bạn tự làm sạch và phân tích được một dataset thật bằng Pandas, và repo có test chạy bằng một lệnh.
+### Prompt Engineering
 
-> Nếu bạn chưa từng lập trình, dành thêm 3–4 tuần cho Python trước khi vào phần toán.
+Xem thêm roadmap riêng: [Prompt Engineering](https://roadmap.sh/prompt-engineering).
 
-## GĐ1: Machine Learning (6–8 tuần) [Cốt lõi]
+**Prompt Anatomy** (cấu trúc của prompt):
 
-**Mục tiêu:** hiểu quy trình ML từ dữ liệu đến đánh giá mô hình.
+- [ ] Input Format (định dạng đầu vào)
+- [ ] System Prompting
+  - [ ] Role & Behavior (vai trò và hành vi)
+  - [ ] Context (bối cảnh)
+  - [ ] Constraints (ràng buộc)
+  - [ ] Structured Output (đầu ra có cấu trúc, ví dụ JSON)
 
-- [ ] Hồi quy tuyến tính và logistic, gradient descent (tự cài đặt bằng NumPy)
-- [ ] Cây quyết định, Random Forest, Gradient Boosting (XGBoost, LightGBM)
-- [ ] SVM, KNN, Naive Bayes
-- [ ] Clustering (K-Means, DBSCAN), PCA
-- [ ] Đánh giá: train/val/test, cross-validation, precision/recall/F1, ROC-AUC
-- [ ] Overfitting, regularization, bias-variance, data leakage
-- [ ] Feature engineering, xử lý dữ liệu thiếu và mất cân bằng
-- [ ] Tuning siêu tham số (Optuna)
-- [ ] Thiết kế thí nghiệm: baseline, ablation, so sánh có ý nghĩa thống kê
-- [ ] Giải thích mô hình (SHAP, feature importance), công bằng và thiên lệch (bias) của dữ liệu
+**Prompting Techniques** (kỹ thuật viết prompt):
 
-**Tài liệu chi tiết:** [machine-learning/README.md](machine-learning/README.md)
+- [ ] Zero-Shot (không cho ví dụ)
+- [ ] Few-Shot (cho vài ví dụ)
+- [ ] ReAct (xen kẽ suy luận và hành động)
+- [ ] CoT (Chain of Thought, suy luận từng bước)
 
-**Tài liệu gợi ý:** Machine Learning Specialization của Andrew Ng, "Hands-On Machine Learning" của Aurélien Géron.
+**Model Interaction** (tương tác với model):
 
-**Dự án:** `projects/01-house-price-ml/`, pipeline đầy đủ (EDA, feature engineering, so sánh mô hình, báo cáo).
+- [ ] Function Calling (để model gọi hàm của bạn)
+- [ ] Prompt Caching (dùng lại phần prompt đã xử lý để giảm chi phí và độ trễ)
+- [ ] Streaming Responses (trả kết quả dần theo thời gian thực)
 
-**Hoàn thành khi:** bạn giải thích được vì sao chọn mô hình và metric đó, và tự cài đặt được hồi quy logistic từ đầu.
+### Context Engineering
 
-## GĐ2: Deep Learning (6–8 tuần) [Cốt lõi]
+Chọn và sắp xếp đúng thông tin đưa cho model.
 
-**Mục tiêu:** xây và huấn luyện mạng neural bằng PyTorch.
+**Fundamentals** (cơ bản):
 
-- [ ] Perceptron, MLP, backpropagation (tự cài bằng NumPy một lần)
-- [ ] PyTorch: tensor, autograd, `nn.Module`, DataLoader, training loop
-- [ ] Hàm kích hoạt, loss, optimizer (SGD, Adam), learning rate scheduler
-- [ ] Batch norm, layer norm, dropout, khởi tạo trọng số
-- [ ] CNN: tích chập, pooling, ResNet, transfer learning
-- [ ] RNN, LSTM, GRU (học để hiểu lịch sử, không cần đào sâu)
-- [ ] Huấn luyện trên GPU, mixed precision, gradient accumulation
-- [ ] Theo dõi thí nghiệm bằng Weights & Biases hoặc MLflow
-- [ ] Huấn luyện phân tán (DDP, FSDP, DeepSpeed) ở mức khái niệm: vì sao cần và chia việc thế nào
+- [ ] Context vs Prompt Engineering (khác nhau ở đâu)
+- [ ] What is a Context Layer? (tầng thu thập và chọn thông tin trước khi đưa cho model)
+- [ ] Context Sources (nguồn ngữ cảnh)
+  - [ ] MCP
+- [ ] Context Security (bảo mật ngữ cảnh)
+- [ ] Context Evaluation (đánh giá chất lượng ngữ cảnh)
 
-**Tài liệu gợi ý:** Deep Learning Specialization của Andrew Ng, fast.ai Practical Deep Learning, "Neural Networks: Zero to Hero" của Andrej Karpathy (phần backprop và makemore).
+**Context Engineering Techniques** (kỹ thuật):
 
-**Dự án:** `projects/02-image-classifier/`, phân loại ảnh bằng CNN và transfer learning.
+- [ ] RAG & Dynamic Filters (truy xuất kèm bộ lọc động)
+- [ ] Memory Systems (hệ thống bộ nhớ)
+- [ ] Context Compaction (nén ngữ cảnh)
+- [ ] Long-Context Processing (xử lý ngữ cảnh dài)
+- [ ] State & Historical Context (trạng thái và lịch sử)
+- [ ] Multi-agent Context Sharing (chia sẻ ngữ cảnh giữa các agent)
+- [ ] Context Isolation (tách biệt ngữ cảnh)
+- [ ] Context Failure Modes (các kiểu lỗi do ngữ cảnh)
 
-**Hoàn thành khi:** bạn viết được training loop không cần copy, và hiểu từng bước của backpropagation.
+**Tools & Context Warehouses** (công cụ):
 
-## GĐ3: NLP và LLM (5–7 tuần) [Cốt lõi]
+- [ ] modus
+- [ ] DataHub
+- [ ] Atlan
+- [ ] PostHog
 
-**Mục tiêu:** hiểu LLM hoạt động bên trong và dùng được model mã nguồn mở.
+## Phần 3: AI Models
 
-Nền tảng:
-- [ ] Tokenization (BPE), embeddings (Word2Vec, sentence embeddings)
-- [ ] Self-attention, multi-head attention, positional encoding
-- [ ] Kiến trúc Transformer đầy đủ (encoder, decoder, decoder-only)
-- [ ] Tự cài đặt GPT mini (theo Karpathy "Let's build GPT")
-- [ ] Pretraining và scaling laws ở mức khái niệm
+### Type of Models
 
-LLM hiện đại:
-- [ ] RoPE, Grouped-Query Attention, Mixture of Experts (mức khái niệm)
-- [ ] KV cache, quantization, vì sao inference tốn bộ nhớ
-- [ ] RLHF và alignment ở mức khái niệm
-- [ ] Mô hình đa phương thức (vision-language) ở mức khái niệm
+- [ ] Pre-trained Models (model đã huấn luyện sẵn)
+- [ ] Closed vs Open Source Models (model đóng và model mã nguồn mở)
+- [ ] Self-Hosted Models (model tự vận hành trên hạ tầng riêng)
 
-Thực hành:
-- [ ] HuggingFace Transformers: tải model, inference, pipeline
-- [ ] Sampling: temperature, top-k, top-p
-- [ ] Prompt engineering, structured output, gọi API LLM
-- [ ] Đánh giá LLM: perplexity, benchmark, LLM-as-judge
+### Choosing the Right Model
 
-**Tài liệu gợi ý:** "Attention Is All You Need", Karpathy "Let's build GPT" và "Let's build the GPT Tokenizer", khóa NLP của HuggingFace.
+- [ ] Choosing the Right Model (cân nhắc độ khó của tác vụ, chi phí, độ chính xác và tốc độ)
 
-**Hoàn thành khi:** bạn giải thích được một lần forward của Transformer và đã chạy được một model mã nguồn mở.
+**Closed Models** (model đóng):
 
-## GĐ4: RAG và đánh giá (4–5 tuần) [Cốt lõi]
+- [ ] Anthropic Claude
+- [ ] Google Gemini
+- [ ] OpenAI (GPT, o-series)
+- [ ] Cohere
+- [ ] Mistral
 
-**Mục tiêu:** xây hệ thống hỏi đáp trên tài liệu riêng và chứng minh được chất lượng bằng số liệu.
+**Open Source Models** (model mã nguồn mở):
 
-- [ ] Vector database: Chroma, Qdrant, FAISS
-- [ ] Tìm kiếm xấp xỉ (ANN): HNSW, IVF, đánh đổi giữa tốc độ, bộ nhớ và độ chính xác
-- [ ] Chunking: theo ký tự, theo cấu trúc, semantic chunking
-- [ ] Embedding model, tìm kiếm ngữ nghĩa
-- [ ] Hybrid search (BM25 + vector), reranking
-- [ ] Query rewriting, HyDE, multi-query
-- [ ] Xử lý PDF, bảng biểu, OCR
-- [ ] RAG nâng cao: GraphRAG, text-to-SQL trên dữ liệu có cấu trúc, RAG đa phương thức, cập nhật dữ liệu định kỳ
-- [ ] Xây bộ dữ liệu đánh giá (câu hỏi, đáp án chuẩn, đoạn nguồn)
-- [ ] Đo: context precision/recall, faithfulness, answer relevancy (Ragas hoặc tự viết)
-- [ ] Tự viết bản RAG thuần trước, sau đó mới dùng LangChain hoặc LlamaIndex
+- [ ] Meta Llama
+- [ ] DeepSeek
+- [ ] Qwen
+- [ ] Gemma
 
-**Dự án:** `projects/03-doc-qa-rag/`, hỏi đáp trên bộ tài liệu thật, có giao diện và bộ đánh giá.
+**Platforms & Ecosystem** (nền tảng):
 
-**Hoàn thành khi:** bạn có số liệu cho thấy một thay đổi (chunk size, reranker...) cải thiện hay làm xấu kết quả.
+- [ ] Hugging Face
+  - [ ] Hugging Face Tasks
+  - [ ] Hugging Face Hub
+  - [ ] Transformers.js
+- [ ] Ollama (chạy model trên máy cá nhân)
+- [ ] LM Studio (ứng dụng desktop để chạy model trên máy cá nhân)
+- [ ] OpenRouter (một API chung cho nhiều nhà cung cấp model)
 
-> Nếu muốn có sản phẩm chạy được sớm cho đỡ nản, bạn có thể làm bản RAG đơn giản ngay sau GĐ1, rồi quay lại làm đầy đủ ở GĐ4.
+**APIs & SDKs**:
 
-## GĐ5: Agents (3–4 tuần) [Cốt lõi]
+- [ ] OpenAI Response API
+- [ ] Claude Messages API
+- [ ] Google Gemini API
+- [ ] Hugging Face Inference SDK
+- [ ] OpenAI-compatible APIs (API tương thích chuẩn của OpenAI)
 
-**Mục tiêu:** xây hệ thống LLM biết dùng công cụ để hoàn thành tác vụ nhiều bước.
+## Phần 4: Embeddings & Vector Databases
 
-- [ ] Function calling và tool use
-- [ ] Vòng lặp agent: lập kế hoạch, hành động, quan sát
-- [ ] MCP (Model Context Protocol): viết một MCP server
-- [ ] Memory và quản lý ngữ cảnh (context engineering): cắt, tóm tắt, chọn thông tin đưa vào prompt
-- [ ] Prompt caching, human-in-the-loop, workflow chạy dài có thể khôi phục
-- [ ] Multi-agent và orchestration (mức cơ bản)
-- [ ] Đánh giá agent: bộ tác vụ có đáp án, đo tỉ lệ thành công
-- [ ] Guardrails, prompt injection, quyền hạn của tool
+### What are Embeddings
 
-**Dự án:** `projects/04-research-agent/`, agent giải quyết một tác vụ thật và có bộ test đo độ tin cậy.
+**Use Cases for Embeddings** (ứng dụng):
 
-**Hoàn thành khi:** agent chạy ổn định trên bộ test của bạn và bạn biết nó thất bại ở đâu.
+- [ ] Semantic Search (tìm kiếm theo ý nghĩa)
+- [ ] Data Classification (phân loại dữ liệu)
+- [ ] Recommendation Systems (hệ thống gợi ý)
+- [ ] Anomaly Detection (phát hiện bất thường)
 
-## GĐ6: Fine-tuning (3–4 tuần) [Cốt lõi]
+### Embedding Models
 
-**Mục tiêu:** tinh chỉnh LLM cho một tác vụ hoặc miền cụ thể.
+**Proprietary Models** (model thương mại):
 
-- [ ] Khi nào nên fine-tune, khi nào dùng RAG hoặc prompt
-- [ ] Chuẩn bị dataset: định dạng instruction, làm sạch, tạo dữ liệu tổng hợp
-- [ ] SFT với `trl`
-- [ ] LoRA, QLoRA với `peft` và `bitsandbytes`
-- [ ] Preference tuning: DPO (RL kiểu GRPO chỉ cần nắm khái niệm)
-- [ ] Đánh giá trước và sau fine-tune trên bộ test riêng
-- [ ] Merge adapter, lượng tử hóa (GGUF, AWQ), đẩy lên HuggingFace Hub
+- [ ] OpenAI Embeddings API
+- [ ] Gemini Embedding
+- [ ] Cohere
 
-**Dự án:** `projects/05-finetuned-domain-llm/`.
+**Open Source Models** (model mã nguồn mở):
 
-**Về phần cứng:** mặc định dùng model **1–4B** với QLoRA trên Colab hoặc Kaggle. Model 7–8B chạy rất sát giới hạn bộ nhớ của GPU T4 miễn phí, nên chỉ thử khi có GPU lớn hơn (thuê theo giờ).
+- [ ] Sentence Transformers
+- [ ] Models on Hugging Face
+- [ ] Jina
 
-**Hoàn thành khi:** model sau fine-tune thắng model gốc trên bộ đánh giá riêng của bạn.
+### Vector Databases
 
-## GĐ7: MLOps và LLMOps (4–5 tuần) [Cốt lõi]
+- [ ] Purpose and Functionality (mục đích và chức năng)
 
-**Mục tiêu:** đưa hệ thống vào chạy thật và theo dõi được nó.
+**Popular Vector DBs** (chọn một để học):
 
-- [ ] FastAPI cho model serving, thiết kế API, streaming
-- [ ] Docker, docker-compose
-- [ ] Theo dõi thí nghiệm và model: MLflow hoặc Weights & Biases
-- [ ] Quản lý dữ liệu và model: DVC, HuggingFace Hub
-- [ ] CI/CD với GitHub Actions, test cho code ML
-- [ ] Serving LLM: vLLM hoặc Ollama, batching, giới hạn tốc độ
-- [ ] LLMOps: tracing (Langfuse hoặc LangSmith), theo dõi chi phí token và độ trễ, caching
-- [ ] Monitoring: log, cảnh báo, data drift
-- [ ] Đánh giá trực tuyến: A/B testing, thu phản hồi người dùng
-- [ ] Thiết kế hệ thống AI: độ trễ, chi phí, mở rộng, fallback giữa các model, xử lý lỗi
-- [ ] Bảo mật và quyền riêng tư: PII, quản lý API key, prompt injection ở tầng hệ thống
-- [ ] Cloud cơ bản (AWS, GCP hoặc Azure); Kubernetes chỉ cần khái niệm
+- [ ] Chroma
+- [ ] Pinecone
+- [ ] Weaviate
+- [ ] FAISS
+- [ ] LanceDB
+- [ ] Qdrant
+- [ ] Supabase
+- [ ] MongoDB Atlas
 
-**Dự án:** `projects/06-llm-service/`, đóng gói dự án RAG hoặc Agent thành dịch vụ chạy trong container, có CI và dashboard theo dõi.
+**Implementing Vector Search** (triển khai tìm kiếm vector):
 
-**Hoàn thành khi:** dịch vụ chạy bằng một lệnh `docker compose up`, có test tự động và bạn xem được chi phí cùng độ trễ của từng request.
+- [ ] Indexing Embeddings (lập chỉ mục)
+- [ ] Performing Similarity Search (tìm kiếm tương đồng)
 
-## GĐ8: Big Data (3–4 tuần) [Tùy chọn một phần]
+## Phần 5: RAGs
 
-**Mục tiêu:** xử lý dữ liệu vượt quá bộ nhớ một máy và xây pipeline dữ liệu.
+### What are RAGs?
 
-Nên học (gần như vị trí nào cũng cần):
-- [ ] Định dạng cột: Parquet, Arrow
-- [ ] DuckDB cho phân tích cục bộ quy mô lớn
-- [ ] Điều phối pipeline: Airflow hoặc Prefect
+- [ ] RAG Usecases (khi nào nên dùng)
+- [ ] RAG vs Fine-tuning (chọn cách nào)
 
-Học nếu vị trí hướng tới dữ liệu lớn:
-- [ ] PySpark: DataFrame, partition, shuffle
-- [ ] Kafka: producer, consumer, streaming cơ bản
-- [ ] Data lake, lakehouse (Delta Lake, Iceberg) ở mức khái niệm
+**Implementing RAG** (các bước triển khai):
 
-**Dự án:** `projects/07-data-pipeline/`, pipeline chạy theo lịch, đọc dữ liệu thô và ghi ra Parquet đã xử lý.
+- [ ] Chunking (chia nhỏ tài liệu)
+- [ ] Embedding (chuyển đoạn văn thành vector)
+- [ ] Vector Database (lưu vector)
+- [ ] Retrieval Process (truy xuất các đoạn liên quan)
+- [ ] Generation (sinh câu trả lời từ các đoạn đã truy xuất)
 
-**Hoàn thành khi:** pipeline chạy tự động theo lịch và bạn giải thích được vì sao chọn công cụ đó cho khối lượng dữ liệu của mình.
+**Ways of Implementing RAG** (cách xây dựng):
 
-## Mở rộng [Tùy chọn] (`09-optional/`)
+- [ ] Using SDKs Directly (dùng trực tiếp SDK)
+- [ ] Langchain
+- [ ] LlamaIndex
+- [ ] Haystack
+- [ ] RAGFlow
 
-Chỉ học khi mục tiêu hoặc dự án của bạn cần:
-- Computer Vision nâng cao: object detection (YOLO), segmentation
-- Mô hình sinh ảnh: diffusion
-- Xử lý giọng nói: Whisper, TTS
-- Reinforcement Learning
-- Time series
-- Recommender system
-- Nén và xuất model: ONNX, pruning, distillation
-- Pretraining model từ đầu ở quy mô nhỏ
+Tài liệu trong repo: [RAG Từ Cơ Bản Đến Thực Chiến](<rag/RAG Từ Cơ Bản Đến Thực Chiến: Xây Hệ Thống AI Biết Tra Cứu Dữ Liệu.md>).
 
-## Phạm vi và giới hạn
+## Phần 6: AI Agents
 
-Làm hết GĐ0–8 cùng các dự án, bạn có đủ nền tảng của một AI Engineer ứng dụng ở mức mới vào nghề: hiểu ML/DL, hiểu LLM bên trong, và xây, đánh giá, triển khai được hệ thống RAG, agent, fine-tuning.
+### AI Agents
 
-Roadmap **không** bao gồm:
-- Nghiên cứu mô hình mới và huấn luyện LLM quy mô lớn (cần nhiều GPU và nền toán sâu hơn)
-- Chuyên sâu một lĩnh vực hẹp (thị giác máy tính, giọng nói, robot...), xem phần mở rộng
-- Kinh nghiệm vận hành hệ thống thật ở quy mô lớn, thứ chỉ có khi chạy sản phẩm thật trong thời gian dài
+Xem thêm roadmap riêng: [AI Agents](https://roadmap.sh/ai-agents).
 
-Đọc roadmap không thay thế được việc làm. Độ sâu đến từ các dự án cuối giai đoạn, nên đừng bỏ qua.
+- [ ] Agents Usecases (khi nào nên dùng agent)
+- [ ] ReAct Prompting
+- [ ] Tools & Function Calling
+- [ ] Multi-agents
 
-## Chọn nhánh theo mục tiêu
+**Building AI Agents** (cách xây dựng):
 
-| Mục tiêu | Giữ | Rút gọn hoặc bỏ | Đẩy sớm |
-|---|---|---|---|
-| **AI/LLM Engineer ứng dụng** (mặc định) | GĐ0–7 | GĐ8 chỉ học phần "nên học" | GĐ4, GĐ5 |
-| **ML Engineer / Data Scientist** | GĐ0–3, 6–8 | GĐ5 rút gọn | GĐ1, GĐ2, GĐ8 đầy đủ, thêm `09-optional` |
-| **Research / nghiên cứu** | GĐ0–3, 6 | GĐ7, GĐ8 | Toán sâu hơn, đọc paper, RL, pretraining |
+- [ ] Manual Implementation (tự viết không dùng framework)
+- [ ] OpenAI AgentKit & Agent SDK
+- [ ] Claude Agent SDK
+- [ ] Vertex AI Agent Builder
+- [ ] Google ADK
 
-## Quy tắc làm việc
+### Model Context Protocol (MCP)
 
-1. **Mỗi tuần** có một mục tiêu cụ thể và một thứ chạy được.
-2. **Notebook để khám phá, `src/` để lưu code đã chốt.**
-3. **Tự cài đặt một lần, rồi mới dùng thư viện.** Áp dụng cho gradient descent, backprop, attention, RAG.
-4. **Đo trước khi tối ưu.** Luôn có baseline và bộ đánh giá, đặc biệt với RAG, agent và fine-tuning.
-5. **Mỗi giai đoạn kết thúc bằng một dự án** có README ghi rõ vấn đề, cách làm, kết quả và bài học.
-6. **Không đẩy dữ liệu và model lớn lên git.** Dùng `.gitignore`, DVC hoặc HuggingFace Hub.
-7. **Đọc ít nhất một paper mỗi tháng,** tóm tắt vào `notes/`. Đọc tài liệu tiếng Anh là thói quen cần tập từ đầu.
+Giao thức chuẩn để kết nối ứng dụng AI với công cụ và dữ liệu bên ngoài.
 
-## Lịch gợi ý theo tháng
+**Core Components** (thành phần cốt lõi):
 
-| Tháng | Nội dung |
-|---|---|
-| 1 | GĐ0; làm quen Git và test ngay từ tuần đầu |
-| 2 | Hết GĐ0, bắt đầu GĐ1 |
-| 3 | GĐ1, học thêm SQL và DuckDB |
-| 4 | GĐ2 |
-| 5 | Hết GĐ2, bắt đầu GĐ3; thử bọc model thành API bằng FastAPI và Docker |
-| 6 | GĐ3 |
-| 7 | GĐ4 (RAG) |
-| 8 | GĐ5 (Agents) |
-| 9 | GĐ6 (Fine-tuning) |
-| 10 | GĐ7 (MLOps/LLMOps), bắt đầu GĐ8 vào cuối tháng |
-| 11 | GĐ8 (Big Data) |
-| 12–13 | Dự phòng cho phần học chậm hơn dự kiến, ôn lại, làm dự án tổng hợp ghép RAG, agent và triển khai |
+- [ ] MCP Host
+- [ ] MCP Client
+- [ ] MCP Server
+- [ ] Data Layer
+- [ ] Transport Layer
 
-Lịch này chỉ là ước tính. Nếu một giai đoạn trượt thì dời các giai đoạn sau, đừng cắt bớt bài tập tự cài đặt hoặc dự án cuối giai đoạn.
+**Developing with MCP** (phát triển với MCP):
 
-## Theo dõi tiến độ
+- [ ] Building an MCP Server
+- [ ] Building an MCP Client
+- [ ] Connect to Local Server
+- [ ] Connect to Remote Server
 
-Tick vào các checkbox ở trên khi hoàn thành. Cuối mỗi tháng, ghi lại ngắn gọn:
+## Phần 7: AI Safety and Ethics
 
-- Đã học được gì
-- Đã làm ra gì (link commit hoặc dự án)
-- Điều còn mơ hồ cần ôn lại
-- Mục tiêu tháng sau
+### AI Safety and Ethics
+
+**Understanding AI Safety Issues** (hiểu các vấn đề an toàn):
+
+- [ ] Prompt Injection Attacks (tấn công chèn lệnh qua prompt)
+- [ ] Security and Privacy Concerns (bảo mật và quyền riêng tư)
+- [ ] Bias and Fairness (thiên lệch và công bằng)
+
+**Safety Best Practices** (thực hành tốt):
+
+- [ ] Content Moderation APIs (API kiểm duyệt nội dung)
+- [ ] Adding end-user IDs in prompts (gắn ID người dùng để truy vết và ngăn lạm dụng)
+- [ ] Conducting adversarial testing (kiểm thử đối kháng)
+- [ ] Robust prompt engineering (viết prompt khó bị lợi dụng)
+- [ ] Know your Customers / Usecases (hiểu người dùng và tình huống sử dụng)
+- [ ] Constraining outputs and inputs (giới hạn đầu vào và đầu ra)
+
+## Phần 8: Evaluation & Observability
+
+### LLM Observability
+
+Theo dõi hệ thống khi chạy: đã gửi prompt gì, nhận về gì, mất bao lâu, tốn bao nhiêu token.
+
+- [ ] Tracing & logging
+- [ ] Cost/latency monitoring (theo dõi chi phí và độ trễ)
+- [ ] Production monitoring (giám sát môi trường production)
+
+**Observability Tools** (công cụ):
+
+- [ ] LangSmith
+- [ ] Langfuse
+- [ ] Helicone
+- [ ] Arize AI
+
+### LLM Evaluations
+
+Đo chất lượng bằng bộ kiểm thử lặp lại được, thay vì đánh giá cảm tính.
+
+**Evaluation Types** (các loại đánh giá):
+
+- [ ] Deterministic Evals (kiểm tra bằng luật cố định)
+- [ ] Model-Based Evals (dùng model để chấm)
+- [ ] Human Evals (người chấm)
+- [ ] Evaluation Metrics (các chỉ số đánh giá)
+
+**Evaluation Tools** (công cụ):
+
+- [ ] DeepEval
+- [ ] RAGAS
+
+### Regression Testing
+
+- [ ] Regression Testing (đảm bảo thay đổi prompt, model hoặc cách truy xuất không làm hỏng các trường hợp đang chạy tốt)
+
+## Phần 9: Other AI Applications
+
+### Multimodal AI
+
+Xử lý và sinh nhiều loại dữ liệu: văn bản, ảnh, âm thanh, video.
+
+- [ ] Multimodal AI Usecases (ứng dụng)
+
+**Multimodal AI Tasks** (các tác vụ):
+
+- [ ] Image Understanding (hiểu ảnh)
+- [ ] Image Generation (sinh ảnh)
+- [ ] Video Understanding (hiểu video)
+- [ ] Audio Processing (xử lý âm thanh)
+- [ ] Text-to-Speech (văn bản thành giọng nói)
+- [ ] Speech-to-Text (giọng nói thành văn bản)
+
+**Implementing Multimodal AI** (triển khai):
+
+- [ ] OpenAI Vision API
+- [ ] DALL-E API
+- [ ] NanoBanana API
+- [ ] Whisper API
+- [ ] Hugging Face Models
+- [ ] LangChain for Multimodal Apps
+- [ ] LlamaIndex for Multimodal Apps
+
+### Development Tools
+
+**AI Assisted Coding Tools** (công cụ hỗ trợ lập trình bằng AI):
+
+- [ ] Claude Code
+- [ ] Gemini
+- [ ] Codex
+- [ ] Cursor
+- [ ] OpenCode
+- [ ] Replit
+
+Xem thêm roadmap riêng: [Vibe Coding](https://roadmap.sh/vibe-coding).
+
+## Học tiếp
+
+Các hướng roadmap.sh gợi ý sau khi xong lộ trình này:
+
+- [Forward Deployed Engineer](https://roadmap.sh/forward-deployed-engineer)
+- [Prompt Engineering](https://roadmap.sh/prompt-engineering)
+- [Inference Engineering](https://roadmap.sh/inference-engineering)
+
+## Tài liệu khác trong repo
+
+Các chủ đề dưới đây không nằm trong roadmap.sh AI Engineer, nhưng vẫn hữu ích nếu muốn hiểu sâu hơn hoặc đi theo hướng ML Engineer:
+
+- [Machine Learning](machine-learning/README.md)
+- [Big Data](big-data/)
+- [Trí tuệ nhân tạo](artificial-intelligence/)
