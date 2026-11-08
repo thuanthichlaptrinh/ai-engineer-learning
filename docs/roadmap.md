@@ -236,7 +236,7 @@ Chọn và sắp xếp đúng thông tin đưa cho model.
 - [ ] Haystack
 - [ ] RAGFlow
 
-Tài liệu trong repo: [RAG Từ Cơ Bản Đến Thực Chiến](<rag/RAG Từ Cơ Bản Đến Thực Chiến: Xây Hệ Thống AI Biết Tra Cứu Dữ Liệu.md>).
+Tài liệu trong repo: [RAG Từ Cơ Bản Đến Thực Chiến](<rag/RAG Từ Cơ Bản Đến Thực Chiến - Xây Hệ Thống AI Biết Tra Cứu Dữ Liệu.pdf>).
 
 ## Phần 6: AI Agents
 
